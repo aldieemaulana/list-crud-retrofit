@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ismealdi.dactiv.R
+import com.ismealdi.dactiv.activity.MainActivity
 import kotlinx.android.synthetic.main.list_alphabet.view.*
 
 class AlphabetAdapter(private var chars: List<String>, private val context: Context) : RecyclerView.Adapter<AlphabetAdapter.ViewHolder>() {
@@ -28,13 +29,14 @@ class AlphabetAdapter(private var chars: List<String>, private val context: Cont
         holder.character.text = chars[holder.adapterPosition]
 
         holder.frame.setOnClickListener {
-            changeDate(chars[holder.adapterPosition])
+            changeDate(chars[holder.adapterPosition].get(0))
         }
 
     }
 
-    private fun changeDate(character: String) {
-
+    private fun changeDate(character: Char) {
+        context as MainActivity
+        context.scrollToAlphabet(character)
     }
 
     override fun getItemCount(): Int {

@@ -14,4 +14,6 @@
     <string name="text_last_name_hint">Doe</string>
     <string name="text_age_hint">20</string>
     <string name="text_age">Age</string>
+    <string name="edit_contact">Edit Contact</string>
+    <string name="update">Update</string>
 </resources>

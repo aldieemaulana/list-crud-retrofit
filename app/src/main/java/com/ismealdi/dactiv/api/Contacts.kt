@@ -1,6 +1,7 @@
 package com.ismealdi.dactiv.api
 
 import com.ismealdi.dactiv.model.response.Contact
+import com.ismealdi.dactiv.model.response.ContactEdit
 import com.ismealdi.dactiv.model.response.ContactMessage
 import com.ismealdi.dactiv.util.Networks
 import io.reactivex.Observable
@@ -25,6 +26,10 @@ interface Contacts {
     @POST("contact")
     @Headers("Content-Type: application/json")
     fun add(@Body contact: ModelContact): Observable<ContactMessage>
+
+    @PUT("contact/{id}")
+    @Headers("Content-Type: application/json")
+    fun edit(@Path("id") id: String, @Body contact: ModelContact): Observable<ContactEdit>
 
     companion object {
         fun init(): Contacts {

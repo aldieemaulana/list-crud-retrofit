@@ -8,6 +8,6 @@ package com.ismealdi.dactiv.model.request
 data class Contact(
     val firstName: String?,
     val lastName: String?,
-    val photo: String?,
+    val photo: String = "",
     val age: Int?
 )

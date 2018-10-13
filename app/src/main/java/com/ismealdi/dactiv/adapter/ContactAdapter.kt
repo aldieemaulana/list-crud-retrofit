@@ -43,12 +43,12 @@ class ContactAdapter(private var contacts: MutableList<Contact>, private val con
     @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contact = contacts[holder.adapterPosition]
-        val alpha = contact.firstName?.get(0)
+        val alpha = contact.firstName?.get(0)?.toUpperCase()
 
         if(holder.adapterPosition == 0)
             holder.lineFirst.visibility = View.INVISIBLE
 
-        if(holder.adapterPosition == (contacts.size - 1))
+        if(position == (contacts.size - 1))
             holder.lineLast.visibility = View.INVISIBLE
 
         holder.time.text = "${contact.firstName} ${contact.lastName}"
@@ -56,9 +56,15 @@ class ContactAdapter(private var contacts: MutableList<Contact>, private val con
 
         if(mCurrentAlphabet != alpha) {
             holder.category.visibility = View.VISIBLE
-            holder.category.text = "${alpha?.toUpperCase()}"
-        }else
+            holder.category.text = "$alpha"
+
+        }else {
             holder.category.visibility = View.GONE
+            if(position == (contacts.size - 1))
+                holder.lineLast.visibility = View.INVISIBLE
+            else
+                holder.lineLast.visibility = View.VISIBLE
+        }
 
         mCurrentAlphabet = alpha
 
@@ -81,6 +87,7 @@ class ContactAdapter(private var contacts: MutableList<Contact>, private val con
     }
 
     fun addAll(data: MutableList<Contact>) {
+        mCurrentAlphabet = null
         contacts.clear()
         contacts = data
 
@@ -88,12 +95,20 @@ class ContactAdapter(private var contacts: MutableList<Contact>, private val con
     }
 
     fun delete(position: Int) {
-        mCurrentAlphabet = if(position == 0) null else contacts[position - 1].firstName?.get(0)
+        mCurrentAlphabet = if(position == 0) null else contacts[position - 1].firstName?.get(0)?.toUpperCase()
 
         contacts.removeAt(position)
 
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, itemCount - position)
+    }
+
+    fun update(data: Contact, position: Int) {
+        contacts[position] = data
+        contacts.sortBy { contact -> contact.firstName?.toUpperCase() }
+
+        mCurrentAlphabet = null
+        notifyDataSetChanged()
     }
 
 }

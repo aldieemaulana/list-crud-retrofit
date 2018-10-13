@@ -15,3 +15,8 @@ open class Contact(
 open class ContactMessage(
     val message: String?
 )
+
+open class ContactEdit(
+    val message: String?,
+    val data: Contact?
+)

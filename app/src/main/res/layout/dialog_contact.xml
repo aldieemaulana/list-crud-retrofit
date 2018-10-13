@@ -21,18 +21,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
             <com.ismealdi.dactiv.components.AmTextView
-                android:layout_marginTop="50dp"
                 app:AmFont="R"
                 android:id="@+id/textName"
                 android:layout_width="match_parent"
                 android:gravity="center"
+                android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextNormal"
                 android:textSize="@dimen/text_medium"
                 tools:text="@tools:sample/full_names"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="@dimen/component_small"/>
 
             <com.ismealdi.dactiv.components.AmTextView
@@ -52,6 +51,7 @@
         app:AmFont="S"
         android:id="@+id/buttonDelete"
         style="@style/AppTheme.ButtonInput.Round"
+        android:background="@drawable/button_danger"
         android:text="@string/delete"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/layoutParentDialog"
@@ -102,5 +102,17 @@
         tools:src="@tools:sample/avatars"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/component_medium"/>
+
+
+    <ImageButton
+        android:id="@+id/buttonEdit"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="55dp"
+        android:padding="@dimen/component_medium"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_vector"
+        android:background="@drawable/button_primary"/>
 
 </RelativeLayout>

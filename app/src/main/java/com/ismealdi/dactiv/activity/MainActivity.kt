@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -25,8 +26,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_contact.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 import com.ismealdi.dactiv.api.Contacts as API
 
 
@@ -49,9 +48,11 @@ class MainActivity : AmActivity() {
             mAdapter = ContactAdapter(data, context)
             recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
             recyclerView.adapter = mAdapter
+
         }else{
             mAdapter!!.addAll(data)
         }
+
     }
 
     private fun initAlphabet() {
@@ -105,7 +106,7 @@ class MainActivity : AmActivity() {
                     if (result?.data != null) {
                         val contacts = result.data as MutableList<Contact>
 
-                        contacts.sortBy { contact -> contact.firstName }
+                        contacts.sortBy { contact -> contact.firstName?.toUpperCase() }
 
                         initList(contacts)
                     }
@@ -150,6 +151,17 @@ class MainActivity : AmActivity() {
             dialogView.buttonCancelDelete.performClick()
         }
 
+        dialogView.buttonEdit.setOnClickListener {
+            dialog.dismiss()
+
+            val mIntent = Intent(context, AddActivity::class.java)
+            mIntent.putExtra(Constants.INTENT.CONTACT.ID, contact.id)
+            mIntent.putExtra(Constants.INTENT.CONTACT.DATA, contact)
+            mIntent.putExtra(Constants.INTENT.CONTACT.POSITION, position)
+
+            startActivityForResult(mIntent , Constants.INTENT.CONTACT.EDIT)
+        }
+
         dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setContentView(dialogView)
         dialog.setCanceledOnTouchOutside(true)
@@ -189,6 +201,12 @@ class MainActivity : AmActivity() {
             Constants.INTENT.CONTACT.ADD -> {
                 if (resultCode == Constants.INTENT.SUCCESS) {
                     getContact()
+                }
+            }
+            Constants.INTENT.CONTACT.EDIT -> {
+                if (resultCode == Constants.INTENT.SUCCESS) {
+                    val contact = data!!.getSerializableExtra(Constants.INTENT.CONTACT.DATA) as Contact
+                    mAdapter!!.update(contact, data!!.getIntExtra(Constants.INTENT.CONTACT.POSITION, 0))
                 }
             }
         }

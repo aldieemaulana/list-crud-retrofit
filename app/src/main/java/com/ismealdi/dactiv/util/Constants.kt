@@ -6,6 +6,10 @@ open class Constants {
 
         object CONTACT {
             const val ADD = 1
+            const val EDIT = 2
+            const val ID = "intentContactId"
+            const val DATA = "intentContactData"
+            const val POSITION = "intentContactPosition"
         }
 
         const val SUCCESS = 101
