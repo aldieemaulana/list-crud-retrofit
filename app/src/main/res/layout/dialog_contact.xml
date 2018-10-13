@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/colorTransparent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/layoutParentDialog"
+        android:layout_marginTop="45dp"
+        android:layout_width="@dimen/dialog_min_width"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_card"
+        style="@style/AppTheme.Layout.Parent"
+        android:paddingBottom="@dimen/component_super">
+        <LinearLayout
+            android:id="@+id/layoutDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <com.ismealdi.dactiv.components.AmTextView
+                android:layout_marginTop="50dp"
+                app:AmFont="R"
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextNormal"
+                android:textSize="@dimen/text_medium"
+                tools:text="@tools:sample/full_names"
+                android:layout_marginBottom="@dimen/component_small"/>
+
+            <com.ismealdi.dactiv.components.AmTextView
+                app:AmFont="M"
+                android:id="@+id/textAge"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextHint"
+                android:textSize="@dimen/text_small"
+                tools:text="@tools:sample/cities"
+                android:layout_marginBottom="@dimen/component_big"/>
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <com.ismealdi.dactiv.components.AmButton
+        app:AmFont="S"
+        android:id="@+id/buttonDelete"
+        style="@style/AppTheme.ButtonInput.Round"
+        android:text="@string/delete"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/layoutParentDialog"
+        android:layout_marginTop="-20dp"
+        android:layout_width="@dimen/dialog_button_width"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/layoutConfirmDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/layoutParentDialog"
+        android:layout_marginTop="-20dp">
+
+        <com.ismealdi.dactiv.components.AmButton
+            app:AmFont="S"
+            android:id="@+id/buttonCancelDelete"
+            style="@style/AppTheme.ButtonInput.Round"
+            android:background="@drawable/button_primary"
+            android:text="@string/cancel"
+            android:layout_marginRight="@dimen/component_medium"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.ismealdi.dactiv.components.AmButton
+            app:AmFont="S"
+            android:id="@+id/buttonConfirmDelete"
+            style="@style/AppTheme.ButtonInput.Round"
+            android:background="@drawable/button_danger"
+            android:text="@string/confirm_delete"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imagePhoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@color/colorPrimaryDark"
+        tools:src="@tools:sample/avatars"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/component_medium"/>
+
+</RelativeLayout>

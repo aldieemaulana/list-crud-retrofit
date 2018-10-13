@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutParent"
+    android:background="@color/colorBackgroundPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="?attr/actionBarSize"
+    tools:context=".activity.MainActivity">
+
+    <include layout="@layout/toolbar_primary"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundPrimary"
+        android:paddingBottom="@dimen/padding_bottom_frame"
+        app:layout_insetEdge="top"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragment.MainFragment"
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@color/colorBackgroundPrimary">
+
+            <requestFocus />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                android:scrollbars="none"
+                android:nestedScrollingEnabled="false"
+                android:isScrollContainer="false"
+                tools:targetApi="lollipop"
+                tools:ignore="RtlSymmetry"
+                android:background="@drawable/background" />
+
+            <LinearLayout
+                android:id="@+id/layoutContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/background_primary"
+                android:layout_marginBottom="@dimen/component_big">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="0dp"
+                    android:scrollbars="none"
+                    style="@style/AppTheme.Layout.Parent"
+                    android:nestedScrollingEnabled="false"
+                    android:isScrollContainer="false"
+                    tools:targetApi="lollipop"
+                    tools:ignore="RtlSymmetry" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <com.ismealdi.dactiv.components.AmButton
+        app:AmFont="S"
+        android:id="@+id/buttonAdd"
+        style="@style/AppTheme.ButtonInput.Flat"
+        android:text="@string/add"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</android.support.design.widget.CoordinatorLayout>

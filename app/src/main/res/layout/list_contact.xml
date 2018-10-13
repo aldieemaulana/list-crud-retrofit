@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/layoutLine"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/component_small"
+        android:layout_marginEnd="@dimen/component_small">
+
+        <View
+            android:id="@+id/viewLineFirst"
+            android:layout_width="@dimen/divider_half"
+            android:layout_height="@dimen/activity_vertical_margin"
+            android:background="@color/colorDivider"
+            android:layout_gravity="center"/>
+
+        <RelativeLayout
+            android:id="@+id/viewCircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="10dp"
+            android:minWidth="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/label_rescheduled">
+            <com.ismealdi.dactiv.components.AmTextView
+                android:id="@+id/textCategory"
+                app:AmFont="B"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_tiny"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:text="T"
+                tools:ignore="RtlHardcoded" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="@dimen/divider_half"
+            android:layout_height="match_parent"
+            android:background="@color/colorDivider"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layoutFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="@dimen/component_medium"
+            android:background="@drawable/shape_card"
+            style="@style/AppTheme.Layout.Parent">
+
+            <com.ismealdi.dactiv.components.AmTextView
+                android:id="@+id/textTime"
+                app:AmFont="B"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/colorTextDark"
+                android:textSize="@dimen/text_small"
+                android:text="12:30 PM"/>
+
+            <ImageView
+                android:id="@+id/imagePhoto"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="38dp"
+                android:layout_height="38dp" />
+
+            <com.ismealdi.dactiv.components.AmTextView
+                android:id="@+id/textName"
+                app:AmFont="R"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginRight="@dimen/component_small"
+                app:layout_constraintRight_toLeftOf="@id/imagePhoto"
+                app:layout_constraintTop_toBottomOf="@id/textTime"
+                android:layout_marginTop="@dimen/component_small"
+                android:textColor="@color/colorTextDark"
+                android:textSize="@dimen/text_small"
+                android:text="Perumusan UU No.14 Tahun 2013"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
+</LinearLayout>

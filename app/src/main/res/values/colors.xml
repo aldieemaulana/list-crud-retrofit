@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00a5e3</color>
+    <color name="colorPrimaryDark">#0277bd</color>
+    <color name="colorAccent">#ECE9D8</color>
+
+
+    <color name="colorTextNormal">#FF101010</color>
+    <color name="colorTextLight">#8e8e8e</color>
+    <color name="colorTextDark">#FF000000</color>
+    <color name="colorTextHint">#a4a4a4</color>
+    <color name="colorTextError">#d32f2f</color>
+
+    <color name="colorList">#c4c4c4</color>
+    <color name="colorListPressed">#acacac</color>
+    <color name="colorDivider">#f2c1c1c1</color>
+
+    <color name="colorBackgroundPrimary">#F9FAFB</color>
+    <color name="colorBackgroundSecondary">#FFDADADA</color>
+
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorWhitePressed">#efefef</color>
+    <color name="colorWhiteSmoke">#F2F2F2</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorTransparent">#00ffffff</color>
+
+    <color name="colorPassed">#3fd27b</color>
+    <color name="colorPassedPressed">#00b96e</color>
+    <color name="colorWaiting">#d1d1d1</color>
+    <color name="colorWaitingPressed">#b9b9b9</color>
+    <color name="colorButtonDanger">#ff535d</color>
+    <color name="colorButtonDangerPressed">#f54a54</color>
+    <color name="colorRescheduled">#656bfb</color>
+    <color name="colorRescheduledPressed">#5459d9</color>
+    <color name="colorWhiteLoading">#c4ffffff</color>
+
+</resources>

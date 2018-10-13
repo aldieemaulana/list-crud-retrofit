@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Jenius</string>
+    <string name="delete">Delete</string>
+    <string name="confirm_delete">Yes, Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">+ Add</string>
+    <string name="add_contact">Add Contact</string>
+    <string name="save">Save</string>
+    <string name="text_name">Name</string>
+    <string name="text_name_hint">Full Name</string>
+    <string name="text_first_name">First Name</string>
+    <string name="text_first_name_hint">John</string>
+    <string name="text_last_name">Last Name</string>
+    <string name="text_last_name_hint">Doe</string>
+    <string name="text_age_hint">20</string>
+    <string name="text_age">Age</string>
+</resources>

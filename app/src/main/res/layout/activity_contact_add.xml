@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutParent"
+    android:background="@color/colorBackgroundPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="?attr/actionBarSize"
+    tools:context=".activity.AddActivity">
+
+    <include layout="@layout/toolbar_primary"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/padding_bottom_frame"
+        android:background="@drawable/background_primary"
+        app:layout_insetEdge="top"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragment.MainFragment"
+            android:orientation="vertical"
+            android:focusable="true"
+            style="@style/AppTheme.Layout.Parent"
+            android:focusableInTouchMode="true">
+
+            <requestFocus />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="@dimen/component_big">
+                <LinearLayout
+                    android:background="@drawable/input_primary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <com.ismealdi.dactiv.components.AmTextView
+                        style="@style/AppTheme.TextLabelInput"
+                        app:AmEdit="@id/text_first_name"
+                        app:AmFont="M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_first_name" />
+
+                    <com.ismealdi.dactiv.components.AmEditText
+                        style="@style/AppTheme.TextInput"
+                        app:AmFont="R"
+                        android:id="@+id/text_first_name"
+                        android:hint="@string/text_first_name_hint"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                        android:inputType="textFilter"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/component_medium"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:background="@drawable/input_primary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <com.ismealdi.dactiv.components.AmTextView
+                        style="@style/AppTheme.TextLabelInput"
+                        app:AmEdit="@id/text_last_name"
+                        app:AmFont="M"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_last_name" />
+
+                    <com.ismealdi.dactiv.components.AmEditText
+                        style="@style/AppTheme.TextInput"
+                        app:AmFont="R"
+                        android:id="@+id/text_last_name"
+                        android:hint="@string/text_last_name_hint"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:singleLine="true"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                        android:inputType="textFilter"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@drawable/input_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/component_medium"
+                android:orientation="vertical">
+                <com.ismealdi.dactiv.components.AmTextView
+                    style="@style/AppTheme.TextLabelInput"
+                    app:AmEdit="@id/text_age"
+                    app:AmFont="M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_age" />
+
+                <com.ismealdi.dactiv.components.AmEditText
+                    style="@style/AppTheme.TextInput"
+                    app:AmFont="R"
+                    android:id="@+id/text_age"
+                    android:hint="@string/text_age_hint"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:maxLength="3"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+            <com.ismealdi.dactiv.components.AmButton
+                app:AmFont="S"
+                android:id="@+id/buttonSave"
+                android:layout_marginTop="@dimen/component_super"
+                style="@style/AppTheme.ButtonInput.Round"
+                android:text="@string/save"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
