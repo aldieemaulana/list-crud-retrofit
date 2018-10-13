@@ -35,8 +35,6 @@ class AlphabetAdapter(private var chars: List<String>, private val context: Cont
     }
 
     private fun changeDate(character: Char) {
-        context as MainActivity
-        context.scrollToAlphabet(character)
     }
 
     override fun getItemCount(): Int {
