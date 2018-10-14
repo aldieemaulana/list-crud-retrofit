@@ -112,7 +112,7 @@
         android:layout_marginLeft="55dp"
         android:padding="@dimen/component_medium"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_vector"
+        android:src="@drawable/ic_edit"
         android:background="@drawable/button_primary"/>
 
 </RelativeLayout>
