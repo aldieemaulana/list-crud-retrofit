@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="@dimen/dialog_min_width_big"
+    android:background="@drawable/shape_card"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_card_top"
+        android:orientation="vertical"
+        style="@style/AppTheme.Layout.Parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_no_wifi"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/AppTheme.Layout.Parent"
+        android:orientation="vertical">
+        <com.ismealdi.dactiv.components.AmTextView
+            app:AmFont="R"
+            android:id="@+id/textTile"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextNormal"
+            android:textSize="@dimen/text_medium"
+            android:text="@string/text_no_internet"
+            android:layout_marginBottom="@dimen/component_small"/>
+
+        <com.ismealdi.dactiv.components.AmTextView
+            app:AmFont="M"
+            android:id="@+id/textDescription"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextHint"
+            android:textSize="@dimen/text_small"
+            android:text="@string/text_no_internet_description"
+            android:layout_marginBottom="@dimen/component_super"/>
+
+        <com.ismealdi.dactiv.components.AmButton
+            app:AmFont="S"
+            android:id="@+id/buttonRetry"
+            style="@style/AppTheme.ButtonInput.Round"
+            android:text="@string/retry"
+            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="@dimen/component_super" />
+    </LinearLayout>
+</LinearLayout>

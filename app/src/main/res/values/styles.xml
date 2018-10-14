@@ -75,6 +75,7 @@
         <item name="android:paddingBottom">@dimen/component_medium</item>
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
 
     <style name="AppTheme.ButtonInput.Round" parent="AppTheme.ButtonInput">

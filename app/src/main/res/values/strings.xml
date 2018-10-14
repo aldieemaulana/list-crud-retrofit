@@ -16,4 +16,7 @@
     <string name="text_age">Age</string>
     <string name="edit_contact">Edit Contact</string>
     <string name="update">Update</string>
+    <string name="text_no_internet">No Internet Connection</string>
+    <string name="text_no_internet_description">You are not connected to the internet. \nMake sure Wi-Fi is on, Airplane Mode is off and try again</string>
+    <string name="retry">Retry</string>
 </resources>

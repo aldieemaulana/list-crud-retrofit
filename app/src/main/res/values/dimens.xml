@@ -36,7 +36,8 @@
     <dimen name="button_toolbar">35dp</dimen>
     <dimen name="button_toolbar_padding">8dp</dimen>
 
-    <dimen name="dialog_min_width">225dp</dimen>
+    <dimen name="dialog_min_width_small">225dp</dimen>
+    <dimen name="dialog_min_width_big">285dp</dimen>
     <dimen name="dialog_button_width">185dp</dimen>
     <dimen name="dialog_margin_vertical">50dp</dimen>
     <dimen name="dialog_margin_horizontal">30dp</dimen>

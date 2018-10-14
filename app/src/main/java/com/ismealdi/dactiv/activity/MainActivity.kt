@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -96,7 +95,7 @@ class MainActivity : AmActivity() {
         init()
     }
 
-    private fun getContact() {
+    internal fun getContact() {
         showProgress()
 
         disposable = mApiContacts.get().subscribeOn(Schedulers.io())
@@ -114,8 +113,7 @@ class MainActivity : AmActivity() {
                     hideProgress()
                 },
                 { error ->
-                    hideProgress()
-                    showSnackBar(layoutParent, error.message.toString(), Snackbar.LENGTH_LONG, 850)
+                    showSnackBar(layoutParent, error.message.toString(), Snackbar.LENGTH_INDEFINITE, 850, getString(R.string.retry), View.OnClickListener { getContact() })
                 }
             )
     }

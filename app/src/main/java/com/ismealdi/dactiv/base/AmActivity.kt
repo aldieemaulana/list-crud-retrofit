@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.ismealdi.dactiv.R
 import com.ismealdi.dactiv.util.Dialogs
+import com.ismealdi.dactiv.util.NoSwipeBehavior
 import com.kaopiz.kprogresshud.KProgressHUD
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.toolbar_primary.*
@@ -33,13 +34,15 @@ open class AmActivity : AppCompatActivity() {
     protected var disposable : Disposable? = null
 
     private var progress: KProgressHUD? = null
+    private var dialogShowing = false
 
     internal fun showProgress() {
         progress!!.show()
     }
 
     internal fun hideProgress() {
-        progress!!.dismiss()
+        if(progress!!.isShowing)
+            progress!!.dismiss()
     }
 
     internal fun initData() {
@@ -77,21 +80,36 @@ open class AmActivity : AppCompatActivity() {
         }
     }
 
-    internal fun showSnackBar(view: CoordinatorLayout, message: String, duration: Int, delay: Long = 0) {
+    internal fun showSnackBar(view: CoordinatorLayout, message: String, duration: Int, delay: Long = 0, actionText: String = "", actionListener: View.OnClickListener? = null) {
         val mSnackBar = Snackbar.make(view, message, duration)
+
+        if(message.contains("Unable to resolve")) mSnackBar.behavior = NoSwipeBehavior()
 
         mSnackBar.view.setBackgroundColor(context.resources.getColor(R.color.colorPrimaryDark))
 
+        val textViewAction = mSnackBar.view.findViewById(android.support.design.R.id.snackbar_action) as TextView
         val textView = mSnackBar.view.findViewById(android.support.design.R.id.snackbar_text) as TextView
-        val font = Typeface.createFromAsset(applicationContext.assets, "fonts/Montserrat-R.ttf")
 
-        textView.setTypeface(font, Typeface.NORMAL)
+        textView.setTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/Montserrat-R.ttf"), Typeface.NORMAL)
         textView.setTextColor(context.resources.getColor(R.color.colorWhite))
         textView.gravity = Gravity.CENTER
         textView.textSize = 13f
-        textView.maxLines = 5
+        textView.maxLines = 1
+
+        if(actionText != "") {
+
+            textViewAction.setTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/Montserrat-B.ttf"), Typeface.NORMAL)
+            textViewAction.setTextColor(context.resources.getColor(R.color.colorWhite))
+            textViewAction.gravity = Gravity.CENTER
+            textViewAction.setBackgroundDrawable(context.resources.getDrawable(R.drawable.button_primary_flat_snackbar))
+            textViewAction.textSize = 13f
+
+            mSnackBar.setAction(actionText, actionListener)
+        }
+
 
         Handler().postDelayed({
+            hideProgress()
             mSnackBar.show()
         }, delay)
     }
@@ -100,6 +118,5 @@ open class AmActivity : AppCompatActivity() {
         super.onPause()
         disposable?.dispose()
     }
-
 
 }

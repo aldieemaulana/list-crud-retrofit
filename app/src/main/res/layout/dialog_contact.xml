@@ -11,7 +11,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/layoutParentDialog"
         android:layout_marginTop="45dp"
-        android:layout_width="@dimen/dialog_min_width"
+        android:layout_width="@dimen/dialog_min_width_small"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_card"
         style="@style/AppTheme.Layout.Parent"
