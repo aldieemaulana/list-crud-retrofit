@@ -8,14 +8,20 @@ import com.ismealdi.dactiv.R
 import com.ismealdi.dactiv.api.Contacts
 import com.ismealdi.dactiv.model.Contact as ModelContact
 import com.ismealdi.dactiv.base.AmActivity
+import com.ismealdi.dactiv.interfaces.AmConnectionInterface
 import com.ismealdi.dactiv.model.request.Contact
+import com.ismealdi.dactiv.util.ConnectionReceiver
 import com.ismealdi.dactiv.util.Constants
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_contact_add.*
 import kotlinx.android.synthetic.main.toolbar_primary.*
 
-class AddActivity : AmActivity() {
+/**
+ * Created by Al on 10/10/2018
+ */
+
+class AddActivity : AmActivity(), AmConnectionInterface {
 
     private val mApiContacts by lazy { Contacts.init() }
     private var data : ModelContact? = null
@@ -46,10 +52,9 @@ class AddActivity : AmActivity() {
 
 
     private fun init() {
-        initData()
+        initData(this)
         initToolbar()
         listener()
-
         if(!intent.getStringExtra(Constants.INTENT.CONTACT.ID).isNullOrEmpty())
             initForm()
     }
@@ -124,6 +129,10 @@ class AddActivity : AmActivity() {
                             showSnackBar(layoutParent, error.message.toString(), Snackbar.LENGTH_LONG, 850)
                         }
                 )
+    }
+
+    override fun onConnectionChange(message: String) {
+        showSnackBar(layoutParent, message, Snackbar.LENGTH_SHORT, 850)
     }
 
 }

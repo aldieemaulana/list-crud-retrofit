@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import android.view.View
 import com.ismealdi.dactiv.R
 import com.kaopiz.kprogresshud.KProgressHUD
 import kotlinx.android.synthetic.main.dialog_no_internet.view.*
@@ -25,7 +24,7 @@ class Dialogs {
     }
 
 
-    internal fun dialogNoInternet(context: Context, actionListener: View.OnClickListener? = null) : Dialog {
+    internal fun dialogNoInternet(context: Context, actionListener: Runnable) {
         val dialog = Dialog(context)
         val layoutInflaterDialog = LayoutInflater.from(context)
         val dialogView = layoutInflaterDialog.inflate(R.layout.dialog_no_internet, null)
@@ -34,13 +33,14 @@ class Dialogs {
         dialog.setContentView(dialogView)
         dialog.setCanceledOnTouchOutside(false)
 
-        dialogView.buttonRetry.setOnClickListener(actionListener)
+        dialogView.buttonRetry.setOnClickListener{
+            dialog.dismiss()
+            actionListener.run()
+        }
 
         if(!dialog.isShowing) {
             dialog.show()
         }
-
-        return dialog
     }
 
 }

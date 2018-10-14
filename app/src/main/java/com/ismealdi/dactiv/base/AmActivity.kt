@@ -3,6 +3,7 @@ package com.ismealdi.dactiv.base
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.IntentFilter
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.os.Handler
@@ -16,6 +17,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import com.ismealdi.dactiv.R
+import com.ismealdi.dactiv.interfaces.AmConnectionInterface
+import com.ismealdi.dactiv.util.ConnectionReceiver
 import com.ismealdi.dactiv.util.Dialogs
 import com.ismealdi.dactiv.util.NoSwipeBehavior
 import com.kaopiz.kprogresshud.KProgressHUD
@@ -34,7 +37,7 @@ open class AmActivity : AppCompatActivity() {
     protected var disposable : Disposable? = null
 
     private var progress: KProgressHUD? = null
-    private var dialogShowing = false
+    private var connectionReceiver : ConnectionReceiver? = null
 
     internal fun showProgress() {
         progress!!.show()
@@ -45,8 +48,19 @@ open class AmActivity : AppCompatActivity() {
             progress!!.dismiss()
     }
 
-    internal fun initData() {
+    internal fun initData(amConnectionInterface: AmConnectionInterface? = null) {
         progress = Dialogs().initProgressDialog(context)
+
+        if(amConnectionInterface != null) {
+            connectionReceiver = ConnectionReceiver()
+            connectionReceiver!!.registerReceiver(amConnectionInterface)
+
+            val mIntentFilter = IntentFilter()
+            mIntentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE")
+
+            registerReceiver(connectionReceiver, mIntentFilter)
+        }
+
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
@@ -83,7 +97,7 @@ open class AmActivity : AppCompatActivity() {
     internal fun showSnackBar(view: CoordinatorLayout, message: String, duration: Int, delay: Long = 0, actionText: String = "", actionListener: View.OnClickListener? = null) {
         val mSnackBar = Snackbar.make(view, message, duration)
 
-        if(message.contains("Unable to resolve")) mSnackBar.behavior = NoSwipeBehavior()
+        if(message.contains("Unable to resolve") || message.contains(getString(R.string.text_no_internet))) mSnackBar.behavior = NoSwipeBehavior()
 
         mSnackBar.view.setBackgroundColor(context.resources.getColor(R.color.colorPrimaryDark))
 
@@ -117,6 +131,13 @@ open class AmActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         disposable?.dispose()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if(connectionReceiver != null)
+            unregisterReceiver(connectionReceiver)
     }
 
 }

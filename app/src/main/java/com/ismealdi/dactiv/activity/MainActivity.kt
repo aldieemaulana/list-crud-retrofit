@@ -15,11 +15,9 @@ import com.ismealdi.dactiv.R
 import com.ismealdi.dactiv.adapter.AlphabetAdapter
 import com.ismealdi.dactiv.adapter.ContactAdapter
 import com.ismealdi.dactiv.base.AmActivity
+import com.ismealdi.dactiv.interfaces.AmConnectionInterface
 import com.ismealdi.dactiv.model.Contact
-import com.ismealdi.dactiv.util.CircleTransform
-import com.ismealdi.dactiv.util.Constants
-import com.ismealdi.dactiv.util.Logs
-import com.ismealdi.dactiv.util.RevealAnimation
+import com.ismealdi.dactiv.util.*
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -32,7 +30,7 @@ import com.ismealdi.dactiv.api.Contacts as API
  * Created by Al on 10/10/2018
  */
 
-class MainActivity : AmActivity() {
+class MainActivity : AmActivity(), AmConnectionInterface {
 
     private lateinit var mAdapterAlphabet : AlphabetAdapter
     private lateinit var dialog : Dialog
@@ -77,7 +75,7 @@ class MainActivity : AmActivity() {
     }
 
     private fun init() {
-        initData()
+        initData(this)
         RevealAnimation(layoutParent, intent, context as Activity)
         getContact()
         initAlphabet()
@@ -95,7 +93,7 @@ class MainActivity : AmActivity() {
         init()
     }
 
-    internal fun getContact() {
+    private fun getContact() {
         showProgress()
 
         disposable = mApiContacts.get().subscribeOn(Schedulers.io())
@@ -208,6 +206,14 @@ class MainActivity : AmActivity() {
                 }
             }
         }
+    }
+
+    override fun onConnectionChange(message: String) {
+        val methodOnRetry = Runnable {
+            getContact()
+        }
+
+        Dialogs().dialogNoInternet(context, methodOnRetry)
     }
 
 }
